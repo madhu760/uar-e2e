@@ -1,0 +1,34 @@
+{
+  "name": "@andromeda-ui/uar-e2e-tests",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "tsc-check": "tsc --noEmit",
+    "lint": "npm-run-all --parallel oxlint eslint",
+    "oxlint": "oxlint -c .oxlintrc.json --quiet tests/",
+    "tsc-check-watch": "tsc --noEmit --watch",
+    "eslint": "eslint tests/ --ext .ts --report-unused-disable-directives --quiet",
+    "prettier": "prettier . --check",
+    "prettier-fix": "prettier . --write --cache",
+    "e2e-test": "NODE_OPTIONS='--no-experimental-strip-types' playwright test --reporter=list",
+    "e2e-test-ui": "playwright test --ui",
+    "e2e-test-headed": "PLAYWRIGHT_SLOW_MO=1200 playwright test --headed --project=chromium",
+    "milkyway:request-otp": "node scripts/milkyway-auth/requestOtp.mjs",
+    "milkyway:verify-otp": "node scripts/milkyway-auth/verifyOtp.mjs",
+    "e2e-test-milkyway": "NODE_OPTIONS='--no-experimental-strip-types' playwright test --config=playwright.milkyway.config.ts --reporter=list",
+    "testenv:request-otp": "node scripts/testenv-auth/requestOtp.mjs",
+    "testenv:verify-otp": "node scripts/testenv-auth/verifyOtp.mjs",
+    "e2e-test-testenv": "NODE_OPTIONS='--no-experimental-strip-types' playwright test --config=playwright.testenv.config.ts --reporter=list"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.1",
+    "dotenv": "^16.4.7",
+    "eslint": "^10.8.0",
+    "eslint-plugin-playwright": "^2.2.0",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "^3.8.1",
+    "typescript": "^5.8.3"
+  }
+}

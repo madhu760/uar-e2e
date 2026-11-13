@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": ["../../.oxlintrc.base.json"],
+  "plugins": ["typescript", "import", "unicorn"],
+  "categories": {
+    "correctness": "off"
+  },
+  "options": {
+    "typeAware": true
+  },
+  "env": {
+    "builtin": true,
+    "es2020": true,
+    "browser": true
+  },
+  "ignorePatterns": ["eslint.config.js"],
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "caughtErrors": "none"
+      }
+    ],
+    "typescript/no-explicit-any": "warn"
+  }
+}

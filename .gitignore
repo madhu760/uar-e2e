@@ -1,0 +1,8 @@
+.env
+node_modules/
+.playwright/
+.milkyway-auth-profile/
+.testenv-auth-profile/
+*.log
+test-results/
+playwright-report/
