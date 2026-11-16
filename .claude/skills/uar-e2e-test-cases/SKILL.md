@@ -27,6 +27,33 @@ Not yet covered: filter/export/report test cases on a **Completed** campaign
 to end (template → campaign → activate → approve every review set → sign
 off) is a separate, longer flow not yet included in this repo.
 
+## Sync from voyager (source of truth)
+
+`andromedasec/voyager` (`services/ui-app/packages/uar-e2e`) is the source of
+truth. This repo is a one-way mirror — nothing here ever gets pushed back to
+voyager. **Always sync before running**, so tests run against the latest code:
+
+```
+node scripts/sync-from-voyager.mjs <path-to-local-voyager-checkout>
+git status
+git diff
+```
+
+Needs a local `voyager` checkout (private repo — ask the user for its path
+if not given; never guess one). The script only touches test/source files —
+it never overwrites `.git/` or `.claude/` (this repo's own skill), and skips
+`node_modules`, `.env`, auth profiles, and `.scratch-*` files.
+
+Review the diff, then commit and push if it looks right:
+```
+git add -A
+git commit -m "sync: pull latest uar-e2e from voyager"
+git push
+```
+
+If `git status` shows no changes, nothing to sync — proceed straight to
+running.
+
 ## Setup
 
 ```
